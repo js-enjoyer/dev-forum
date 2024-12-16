@@ -1,29 +1,43 @@
 <header>
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a class="logo" routerLink="/home">DevTalk</a></li>
+            <li><a class="logo" href="#">DevTalk</a></li>
             <li><a href="#">Browse Questions</a></li>
-            <li><a routerLink="/questions/create">Ask a Question</a></li>
+            <li><a href="#">Ask a Question</a></li>
         </ul>
         
         <!-- Search Bar -->
         <div class="search-bar">
             <input type="text" class="bar" placeholder="Search for questions...">
-            <button class="btn" >Tags</button>
+            <button class="btn" (click)="toggleDropdown()">Tags</button>
             
             <!-- Dropdown Menu -->
+            <div class="dropdown-menu" *ngIf="dropdownVisible">
+                <!-- Left Side: Tag List -->
+                <div class="tags-list">
+                    <input type="text" placeholder="Search tags...">
+                    <ul>
+                        <li *ngFor="let tag of tags">{{ tag }}</li>
+                    </ul>
+                </div>
 
+                <!-- Right Side: Selected Tags -->
+                <div class="selected-tags">
+                    <h4>Selected Tags:</h4>
+                    <div class="tag" *ngFor="let selectedTag of selectedTags">{{ selectedTag }}</div>
+                </div>
+            </div>
         </div>
 
         <ul class="nav-links">
-            <li><a routerLink="/profile">Profile</a></li>
+            <!-- <li><a routerLink="/profile">Profile</a></li>
             <li><a href="#">N</a></li>
-            <li><a href="#">H</a></li>
+            <li><a href="#">H</a></li> -->
         </ul>
 
-        <!-- <div class="auth">
+        <div class="auth">
             <button>Log in</button>
             <button>Sign up</button>
-        </div> -->
+        </div>
     </nav>
 </header>
