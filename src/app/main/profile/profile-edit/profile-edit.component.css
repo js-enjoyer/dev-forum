@@ -1,0 +1,116 @@
+.profile-container {
+    width: 70%;
+    margin: 20px auto;
+    padding:20px 70px;
+    background-color: #2c2c2c;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+/* Image Section */
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #3c95fb;
+}
+
+.change-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f0f8ff;
+    color: #ce8a1c;;
+    font-weight: 600;
+    font-size: 16px;
+    border: 2px solid #ce8a1c;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.change-btn:hover {
+    background-color: #ce8a1c;
+    color: #101010;
+}
+
+/* Form Styling */
+.form-group, .link-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #b0b0b0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #f9a825;
+    box-shadow: 0 0 5px #f9a825;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.save-btn, .cancel-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.save-btn {
+    background-color: #f0f8ff;
+    color: #3c95fb;
+    font-weight: 600;
+    border: 2px solid #3c95fb;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn {
+    font-weight: 600;
+    background-color: #555;
+    color: #ffffff;
+}
+
+.save-btn:hover{
+    background-color: #3c95fb;
+    color: #f0f8ff;
+}
+
+.cancel-btn:hover {
+    opacity: 0.8;
+
+}
+
+/* Links Section */
+.links-section h2 {
+    margin-top: 20px;
+}
