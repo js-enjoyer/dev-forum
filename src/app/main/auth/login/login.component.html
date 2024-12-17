@@ -1,34 +1,62 @@
-<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
-    <!-- Modal Content (Login Form) -->
-    <section class="login-section" *ngIf="isModalOpen">
-        <!-- Close Button (X) -->
-        <button class="close-btn" (click)="closeModal()">X</button>
+<section class="login-section">
 
-        <div class="login-container">
-            <h2>Login</h2>
-            <p>Enter your credentials to access the platform</p>
-            <form class="login-form">
-                <!-- Email Field -->
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" required />
+    <div class="login-container">
+        <h2>Login</h2>
+        <p>Enter your credentials to access the platform</p>
+        <form class="login-form">
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-and-tick">
+                    <input type="text" name="username" placeholder="Enter your Username" ngModel #usernameInput="ngModel"
+                        [appLengthValidator]="usernameLength" [app-highlight]="usernameInput.errors"
+                        (blur)="triggerValidation(usernameInput.control)">
+
+                    @if (usernameInput.touched) {
+                    <div class="green-tick" *ngIf="!usernameInput.errors">✔</div>
+                    }
                 </div>
-
-                <!-- Password Field -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required />
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="login-btn">Login</button>
-            </form>
-
-            <!-- Register Link -->
-            <div class="login-links">
-                <span>Don't have an account?</span>
-                <a href="#" class="register-link">Register</a>
+                @if (usernameInput.touched) {
+                    <div class="error-msg" *ngIf="usernameInput.errors?.['isRequired']">
+                        Title must be longer than 10 characters
+                    </div>
+                    <!-- <div class="error" *ngIf="usernameInput.errors?.['isInvalid']">
+                        Title is not valid!
+                    </div> -->
+                }
             </div>
+
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-and-tick">
+                    <input type="password" name="password" placeholder="Enter your password" ngModel
+                        #passwordInput="ngModel" [appLengthValidator]="passwordLength" [app-highlight]="passwordInput.errors"
+                        (blur)="triggerValidation(passwordInput.control)">
+
+                    @if (passwordInput.touched) {
+                    <div class="green-tick" *ngIf="!passwordInput.errors">✔</div>
+                    }
+                </div>
+                @if (passwordInput.touched) {
+                    <div class="error-msg" *ngIf="passwordInput.errors?.['isRequired']">
+                        Title must be longer than 10 characters
+                    </div>
+                    <!-- <div class="error" *ngIf="passwordInput.errors?.['isInvalid']">
+                        Title is not valid!
+                    </div> -->
+                }
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <!-- Register Link -->
+        <div class="login-links">
+            <span>Don't have an account?</span>
+            <a routerLink="/auth/register" class="register-link">Register</a>
         </div>
-    </section>
-</div>
+    </div>
+</section>

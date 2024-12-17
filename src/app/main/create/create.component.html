@@ -5,77 +5,81 @@
             <p>Provide clear details to get helpful answers quickly.</p>
         </div>
     </div>
-    
+
     <form #questionForm="ngForm" class="question-form" (submit)="onSubmit()">
         <!-- Question Title -->
         <div class="form-group">
             <label for="question-title">Title</label>
-    
+
             <div class="input-and-tick">
-                <input 
-                type="text" 
-                name="title" 
-                placeholder="e.g., How to optimize Angular performance?" 
-                ngModel
-                #titleInput="ngModel" 
-                [appTitleValidator]="4" 
-                [app-highlight]="titleInput.errors"
-                (blur)="triggerValidation(titleInput.control)">
-    
+                <input type="text" name="title" placeholder="e.g., How to optimize Angular performance?" ngModel
+                    #titleInput="ngModel" [appLengthValidator]="titleLength" [app-highlight]="titleInput.errors"
+                    (blur)="triggerValidation(titleInput.control)">
+
                 @if (titleInput.touched) {
-                    <div class="green-tick" *ngIf="!titleInput.errors">✔</div>
+                <div class="green-tick" *ngIf="!titleInput.errors">✔</div>
                 }
             </div>
-    
+
             @if (titleInput.touched) {
-                <div>
-                    <div class="error-msg" *ngIf="titleInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
-                    </div>
-                    <!-- <div class="error" *ngIf="titleInput.errors?.['isInvalid']">
-                            Title is not valid!
-                        </div> -->
-                </div>
+            <div class="error-msg" *ngIf="titleInput.errors?.['isRequired']">
+                Title is required
+            </div>
+            <div class="error-msg" *ngIf="titleInput.errors?.['isInvalid']">
+                Title must be between {{titleLength.minCount}} and {{titleLength.maxCount}} characters
+            </div>
+
             }
         </div>
-    
-    
-    
+
+
+
         <!-- Question Details -->
         <div class="form-group">
             <label for="question-details">Details</label>
-            <textarea 
-            id="question-details"
-            name="description"
-            rows="8"
-            placeholder="Explain your question in detail. Include code snippets, errors, or references."
-            ngModel
-            #descriptionInput="ngModel" 
-            [appTitleValidator]="4" 
-            [app-highlight]="descriptionInput.errors"
-            (blur)="triggerValidation(descriptionInput.control)">
+            <textarea id="question-details" name="description" rows="8"
+                placeholder="Explain your question in detail. Include code snippets, errors, or references." ngModel
+                #descriptionInput="ngModel" [appLengthValidator]="descriptionLength"
+                [app-highlight]="descriptionInput.errors" (blur)="triggerValidation(descriptionInput.control)">
             ></textarea>
-    
+
             @if (descriptionInput.touched) {
-                <div>
-                    <div class="error-msg" *ngIf="descriptionInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
-                    </div>
-                    <!-- <div class="error" *ngIf="descriptionInput.errors?.['isInvalid']">
-                            Title is not valid!
-                        </div> -->
+            <div>
+                <div class="error-msg" *ngIf="descriptionInput.errors?.['isRequired']">
+                    Description is required
                 </div>
+                <div class="error-msg" *ngIf="descriptionInput.errors?.['isInvalid']">
+                    Descripiton must be between 20 and 200 characters
+                </div>
+            </div>
             }
         </div>
-    
+
         <!-- Tags -->
         <div class="form-group">
             <label for="question-tags">Tags</label>
-            <input type="text" id="question-tags" placeholder="e.g., javascript angular performance">
-            <p class="form-hint">Add tags to help categorize your question (comma separated).</p>
+
+            <!-- Display selected tags -->
+            <div class="tags-selected">
+                <span class="tag" *ngFor="let tag of selectedTags; let i = index">
+                    {{ tag.name }}
+                    <span class="remove-tag" (click)="removeTagById(tag._id)">×</span>
+                </span>
+            </div>
+
+            <!-- Tag selection menu -->
+            <div class="tags-menu">
+                <div class="tag-option" *ngFor="let tag of allTags" [class.selected]="isTagSelected(tag)"
+                    (click)="toggleTagSelection(tag)">
+                    {{ tag.name }}
+                </div>
+            </div>
+            <p class="form-hint">Click on tags to add them to your selection.</p>
         </div>
-    
+
+
         <!-- Submit Button -->
-        <button type="submit" class="btn submit-btn">Post Your Question</button>
+        <button 
+        type="submit" class="btn submit-btn" [disabled]="questionForm.invalid">Post Your Question</button>
     </form>
 </section>

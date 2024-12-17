@@ -1,24 +1,24 @@
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
-import { titleValidatorFn } from '../../utils/title-validator';
+import { legnthValidator } from '../../utils/length-validator'; 
 
 @Directive({
-  selector: '[appTitleValidator]',
+  selector: '[appLengthValidator]',
   standalone: true,
   providers: [
     {
     provide: NG_VALIDATORS,
     multi: true,
-    useExisting: TitleValidatorDirective
+    useExisting: InputLengthValidator
     }
   ]
 })
 
-export class TitleValidatorDirective implements Validator{
-  @Input('appTitleValidator') maxCount: number | null = null;
+export class InputLengthValidator implements Validator{
+  @Input('appLengthValidator') maxCount = {} as {maxCount: number, minCount: number};
 
   validate(control: AbstractControl): ValidationErrors | null {
-    const validator = titleValidatorFn();
+    const validator = legnthValidator(this.maxCount);
 
     return validator(control);
   }

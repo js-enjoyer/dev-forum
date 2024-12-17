@@ -21,6 +21,8 @@ export class HeaderComponent {
   // Dropdown visibility state
   dropdownVisible: boolean = false;
 
+  constructor() {}
+
   // Toggle dropdown visibility
   toggleDropdown() {
     this.dropdownVisible = !this.dropdownVisible;
