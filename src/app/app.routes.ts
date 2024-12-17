@@ -9,6 +9,8 @@ import { ProfileAnswersComponent } from './main/profile/profile-answers/profile-
 import { ProfileQuestionsComponent } from './main/profile/profile-questions/profile-questions.component';
 import { ProfileSavesComponent } from './main/profile/profile-saves/profile-saves.component';
 import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.component';
+import { LoginComponent } from './main/auth/login/login.component';
+import { RegisterComponent } from './main/auth/register/register.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -34,5 +36,10 @@ export const routes: Routes = [
             { path: 'edit', component: ProfileEditComponent }
         ]
     },
+    {path: 'auth', children: [
+        {path: 'login', component: LoginComponent},
+        {path: 'register', component: RegisterComponent},
+
+    ]},
     //{ path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];

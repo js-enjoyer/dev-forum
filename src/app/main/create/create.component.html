@@ -1,30 +1,81 @@
-<div class="main-welcome">
-    <div class="message-container">
-        <h1>Ask a Question</h1>
-        <p>Provide clear details to get helpful answers quickly.</p>
+<section class="create-section">
+    <div class="main-welcome">
+        <div class="message-container">
+            <h1>Ask a Question</h1>
+            <p>Provide clear details to get helpful answers quickly.</p>
+        </div>
     </div>
-</div>
-
-<form class="question-form">
-    <!-- Question Title -->
-    <div class="form-group">
-        <label for="question-title">Title</label>
-        <input type="text" id="question-title" placeholder="e.g., How to optimize Angular performance?" required>
-    </div>
-
-    <!-- Question Details -->
-    <div class="form-group">
-        <label for="question-details">Details</label>
-        <textarea id="question-details" rows="8" placeholder="Explain your question in detail. Include code snippets, errors, or references." required></textarea>
-    </div>
-
-    <!-- Tags -->
-    <div class="form-group">
-        <label for="question-tags">Tags</label>
-        <input type="text" id="question-tags" placeholder="e.g., javascript angular performance">
-        <p class="form-hint">Add tags to help categorize your question (comma separated).</p>
-    </div>
-
-    <!-- Submit Button -->
-    <button type="submit" class="btn submit-btn">Post Your Question</button>
-</form>
+    
+    <form #questionForm="ngForm" class="question-form" (submit)="onSubmit()">
+        <!-- Question Title -->
+        <div class="form-group">
+            <label for="question-title">Title</label>
+    
+            <div class="input-and-tick">
+                <input 
+                type="text" 
+                name="title" 
+                placeholder="e.g., How to optimize Angular performance?" 
+                ngModel
+                #titleInput="ngModel" 
+                [appTitleValidator]="4" 
+                [app-highlight]="titleInput.errors"
+                (blur)="triggerValidation(titleInput.control)">
+    
+                @if (titleInput.touched) {
+                    <div class="green-tick" *ngIf="!titleInput.errors">✔</div>
+                }
+            </div>
+    
+            @if (titleInput.touched) {
+                <div>
+                    <div class="error-msg" *ngIf="titleInput.errors?.['isRequired']">
+                        Title must be longer than 10 characters
+                    </div>
+                    <!-- <div class="error" *ngIf="titleInput.errors?.['isInvalid']">
+                            Title is not valid!
+                        </div> -->
+                </div>
+            }
+        </div>
+    
+    
+    
+        <!-- Question Details -->
+        <div class="form-group">
+            <label for="question-details">Details</label>
+            <textarea 
+            id="question-details"
+            name="description"
+            rows="8"
+            placeholder="Explain your question in detail. Include code snippets, errors, or references."
+            ngModel
+            #descriptionInput="ngModel" 
+            [appTitleValidator]="4" 
+            [app-highlight]="descriptionInput.errors"
+            (blur)="triggerValidation(descriptionInput.control)">
+            ></textarea>
+    
+            @if (descriptionInput.touched) {
+                <div>
+                    <div class="error-msg" *ngIf="descriptionInput.errors?.['isRequired']">
+                        Title must be longer than 10 characters
+                    </div>
+                    <!-- <div class="error" *ngIf="descriptionInput.errors?.['isInvalid']">
+                            Title is not valid!
+                        </div> -->
+                </div>
+            }
+        </div>
+    
+        <!-- Tags -->
+        <div class="form-group">
+            <label for="question-tags">Tags</label>
+            <input type="text" id="question-tags" placeholder="e.g., javascript angular performance">
+            <p class="form-hint">Add tags to help categorize your question (comma separated).</p>
+        </div>
+    
+        <!-- Submit Button -->
+        <button type="submit" class="btn submit-btn">Post Your Question</button>
+    </form>
+</section>
