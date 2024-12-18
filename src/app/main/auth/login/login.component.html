@@ -3,7 +3,7 @@
     <div class="login-container">
         <h2>Login</h2>
         <p>Enter your credentials to access the platform</p>
-        <form class="login-form">
+        <form #loginForm="ngForm" class="login-form" (ngSubmit)="onSubmit()">
             <!-- Email Field -->
             <div class="form-group">
                 <label for="username">Username</label>
@@ -17,12 +17,14 @@
                     }
                 </div>
                 @if (usernameInput.touched) {
-                    <div class="error-msg" *ngIf="usernameInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
+                    <div class="error-msg-container">
+                        <div class="error-msg" *ngIf="usernameInput.errors?.['isRequired']">
+                            Username is required!
+                        </div>
+                        <div class="error-msg" *ngIf="usernameInput.errors?.['isLength']">
+                            Username must be between 5 and 12 characters long!
+                        </div>
                     </div>
-                    <!-- <div class="error" *ngIf="usernameInput.errors?.['isInvalid']">
-                        Title is not valid!
-                    </div> -->
                 }
             </div>
 
@@ -40,12 +42,14 @@
                     }
                 </div>
                 @if (passwordInput.touched) {
-                    <div class="error-msg" *ngIf="passwordInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
+                    <div class="error-msg-container">
+                        <div class="error-msg" *ngIf="passwordInput.errors?.['isRequired']">
+                            Password is required!
+                        </div>
+                        <div class="error-msg" *ngIf="passwordInput.errors?.['isLength']">
+                            Password must be between 5 and 12 characters long!
+                        </div>
                     </div>
-                    <!-- <div class="error" *ngIf="passwordInput.errors?.['isInvalid']">
-                        Title is not valid!
-                    </div> -->
                 }
             </div>
 

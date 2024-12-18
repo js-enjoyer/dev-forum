@@ -9,25 +9,25 @@ import { Question } from '../interfaces/questions';
 })
 export class QuestionService {
 
-  private apiUrl = 'http://localhost:3000/questions/create';
-  private questionsUrl = 'http://localhost:3000/questions/user'
-  private tagsUrl = 'http://localhost:3000/questions/tags';
+  private apiUrl = '/api/questions';
 
 
   constructor(private http: HttpClient) { }
 
   fetchQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>(this.questionsUrl);
+    return this.http.get<Question[]>(`${this.apiUrl}/recommended`);
+  }
+
+  fetchCurrQuestion(id: String): Observable<Question> {
+    return this.http.get<Question>(`${this.apiUrl}/${id}/details`);
   }
 
   createQuestion(questionData: any): Observable<any> {
-    console.log('sending request');
-    
-    return this.http.post(this.apiUrl, questionData);
+    return this.http.post(`${this.apiUrl}/create`, questionData);
   }
 
   fetchTags(): Observable<Tag[]> {
-    return this.http.get<Tag[]>(this.tagsUrl);
+    return this.http.get<Tag[]>(`${this.apiUrl}/tags`);
   }
 }
 

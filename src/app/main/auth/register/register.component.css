@@ -40,6 +40,34 @@ input {
     border: 1px solid #ccc;
 }
 
+.input-and-tick {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.input-and-tick .green-tick{
+    color: #28a745; /* Green color */
+    font-size: 25px; /* Adjust size */
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.error-msg-container {
+    margin-bottom: 7px;
+}
+
+.error-msg {
+    color: #f04e4e;;
+    font-weight: 600;
+    margin-top: 3px 0;
+}
+
+.form-group .input-error {
+    border: 2px solid #f04e4e;;
+}
+
 button.register-btn {
     background-color: #f9a825;
     border: none;

@@ -11,6 +11,7 @@ import { ProfileSavesComponent } from './main/profile/profile-saves/profile-save
 import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.component';
 import { LoginComponent } from './main/auth/login/login.component';
 import { RegisterComponent } from './main/auth/register/register.component';
+import { DetailsComponent } from './main/details/details.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,7 +20,7 @@ export const routes: Routes = [
         //{ path: '', redirectTo: 'browse', pathMatch: 'full' },
         {path: 'create', component: CreateComponent},
         //{path: 'search', component: SearchComponent},
-        //{path: ':id/details', component: DetailsComponent},
+        {path: ':id/details', component: DetailsComponent},
 
     ]},
     {path: 'users', component: UsersComponent},

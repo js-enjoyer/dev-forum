@@ -77,11 +77,42 @@ main .main-welcome, .main-questions, .main-reputation {
     width: 100%;
 }
 
-.questions-container .question-stats {
+.question-box .question-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
     padding-right: 15px;
     text-align: right;
     width: 8rem;
 }
+
+.question-stats p {
+    font-size: 15px;
+    padding: 2px 4px; /* Keep padding if needed */
+    width: auto; /* Allow the width to adapt to content */
+    align-self: flex-end; /* Align each div to the right within the flex container */
+}
+
+.question-stats .downvotes {
+    border: 1.5px solid rgb(232, 66, 66);
+    border-radius: 5px;
+}
+
+.question-box .upvotes {
+    background-color: rgba(111, 255, 125, 0.773);
+    border-radius: 5px;
+
+    color: #101010;
+}
+
+.question-stats .answers {
+    background-color: #3c95fb;
+    border-radius: 5px;
+
+    color: #101010;
+}
+
 
 
 .questions-container .question-box{

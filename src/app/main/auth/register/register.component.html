@@ -2,61 +2,100 @@
     <div class="register-container">
         <h2>Register</h2>
         <p>Create an account to access the features</p>
-        <form class="register-form">
+        <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit()">
             <!-- Username Field -->
             <div class="form-group">
                 <label for="username">Username</label>
                 <div class="input-and-tick">
                     <input 
                     type="text" 
-                    id="username" 
+                    name="username" 
                     placeholder="Enter your Username" 
                     ngModel #usernameInput="ngModel"   
-                    [appLengthValidator]="usernameLength" 
+                    [appLengthValidator]="usernameLength"
                     [app-highlight]="usernameInput.errors"
                     (blur)="triggerValidation(usernameInput.control)">
 
                     @if (usernameInput.touched) {
                     <div class="green-tick" *ngIf="!usernameInput.errors">✔</div>
                     }
-                    />
+
                 </div>
                 @if (usernameInput.touched) {
-                    <div class="error-msg" *ngIf="usernameInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
+                    <div class="error-msg-container">
+                        <div class="error-msg" *ngIf="usernameInput.errors?.['isRequired']">
+                            Username is required!
+                        </div>
+                        <div class="error-msg" *ngIf="usernameInput.errors?.['isLength']">
+                            Username must be between 5 and 12 characters long!
+                        </div>
                     </div>
-                    <!-- <div class="error" *ngIf="usernameInput.errors?.['isInvalid']">
-                        Title is not valid!
-                    </div> -->
                 }
             </div>
 
             <!-- Email Field -->
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" required />
+                <div class="input-and-tick">
+                    <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Enter your email" 
+                    ngModel
+                    #emailInput="ngModel" 
+                    [appLengthValidator]="emailLength"
+                    [appEmailValidator]="domains"
+                    [app-highlight]="emailInput.errors"
+                    (blur)="triggerValidation(emailInput.control)"
+                    >
+
+                    @if (emailInput.touched) {
+                        <div class="green-tick" *ngIf="!emailInput.errors">✔</div>
+                    }
+                </div>
+                @if (emailInput.touched) {
+                    <div class="error-msg-container">
+                        <div class="error-msg" *ngIf="emailInput.errors?.['isRequired']">
+                            Email is required!
+                        </div>
+                        <div class="error-msg" *ngIf="emailInput.errors?.['isLength']">
+                            Email must be between 10 and 20 characters long!
+                        </div>
+                        <div class="error-msg" *ngIf="emailInput.errors?.['isInvalid']">
+                            Email is invalid!
+                        </div>
+                    </div>
+                }
             </div>
 
             <!-- Password Field -->
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-and-tick">
-                    <input type="password" placeholder="Enter your password" ngModel
-                        #passwordInput="ngModel" [appLengthValidator]="emailLength" [app-highlight]="passwordInput.errors"
-                        (blur)="triggerValidation(passwordInput.control)">
+                    <input 
+                    type="password" 
+                    name="password"
+                    placeholder="Enter your password" 
+                    ngModel
+                    #passwordInput="ngModel" 
+                    [appLengthValidator]="passwordLength"
+                    [app-highlight]="passwordInput.errors"
+                    (blur)="triggerValidation(passwordInput.control)"
+                    >
 
                     @if (passwordInput.touched) {
                     <div class="green-tick" *ngIf="!passwordInput.errors">✔</div>
                     }
-                    />
                 </div>
                 @if (passwordInput.touched) {
-                    <div class="error-msg" *ngIf="passwordInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
+                    <div class="error-msg-container">
+                        <div class="error-msg" *ngIf="passwordInput.errors?.['isRequired']">
+                            Password is required
+                        </div>
+                        <div class="error-msg" *ngIf="passwordInput.errors?.['isLength']">
+                            Password must be between 9 and 20 characters long
+                        </div>
                     </div>
-                    <!-- <div class="error" *ngIf="passwordInput.errors?.['isInvalid']">
-                        Title is not valid!
-                    </div> -->
                 }
             </div>
 
@@ -64,22 +103,34 @@
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <div class="input-and-tick">
-                    <input type="string" placeholder="Enter your password" ngModel
-                        #emailInput="ngModel" [appLengthValidator]="passwordLength" [app-highlight]="emailInput.errors"
-                        (blur)="triggerValidation(emailInput.control)">
+                    <input 
+                    type="password"
+                    name="rePassword"
+                    placeholder="Enter your password" 
+                    ngModel
+                    #rePassInput="ngModel"
+                    [appLengthValidator]="passwordLength"
+                    appRePassValidator
+                    [app-highlight]="rePassInput.errors"
+                    (blur)="triggerValidation(rePassInput.control)">
 
-                    @if (emailInput.touched) {
-                    <div class="green-tick" *ngIf="!emailInput.errors">✔</div>
+                    @if (rePassInput.touched) {
+                    <div class="green-tick" *ngIf="!rePassInput.errors">✔</div>
                     }
-                    />
+
                 </div>
-                @if (emailInput.touched) {
-                    <div class="error-msg" *ngIf="emailInput.errors?.['isRequired']">
-                        Title must be longer than 10 characters
+                @if (rePassInput.touched) {
+                    <div class="error-msg-container">
+                        <div class="error-msg" *ngIf="rePassInput.errors?.['isRequired']">
+                            Confirm Password is required!
+                        </div>
+                        <div class="error-msg" *ngIf="rePassInput.errors?.['isLength']">
+                            Confirm Password must be between 9 and 20 characters long!
+                        </div>
+                        <div class="error-msg" *ngIf="rePassInput.errors?.['doesntMatch']">
+                            Passwords dont match!
+                        </div>
                     </div>
-                    <!-- <div class="error" *ngIf="emailInput.errors?.['isInvalid']">
-                        Title is not valid!
-                    </div> -->
                 }
             </div>
 

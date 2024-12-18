@@ -16,23 +16,18 @@
                     #titleInput="ngModel" [appLengthValidator]="titleLength" [app-highlight]="titleInput.errors"
                     (blur)="triggerValidation(titleInput.control)">
 
-                @if (titleInput.touched) {
-                <div class="green-tick" *ngIf="!titleInput.errors">✔</div>
-                }
+                <div class="green-tick" *ngIf="!titleInput.errors && titleInput.touched">✔</div>
             </div>
 
-            @if (titleInput.touched) {
-            <div class="error-msg" *ngIf="titleInput.errors?.['isRequired']">
-                Title is required
+            <div *ngIf="titleInput.touched">
+                <div class="error-msg" *ngIf="titleInput.errors?.['isRequired']">
+                    Title is required
+                </div>
+                <div class="error-msg" *ngIf="titleInput.errors?.['isInvalid']">
+                    Title must be between {{titleLength.minCount}} and {{titleLength.maxCount}} characters
+                </div>
             </div>
-            <div class="error-msg" *ngIf="titleInput.errors?.['isInvalid']">
-                Title must be between {{titleLength.minCount}} and {{titleLength.maxCount}} characters
-            </div>
-
-            }
         </div>
-
-
 
         <!-- Question Details -->
         <div class="form-group">
@@ -41,18 +36,31 @@
                 placeholder="Explain your question in detail. Include code snippets, errors, or references." ngModel
                 #descriptionInput="ngModel" [appLengthValidator]="descriptionLength"
                 [app-highlight]="descriptionInput.errors" (blur)="triggerValidation(descriptionInput.control)">
-            ></textarea>
+            </textarea>
 
-            @if (descriptionInput.touched) {
-            <div>
+            <div *ngIf="descriptionInput.touched">
                 <div class="error-msg" *ngIf="descriptionInput.errors?.['isRequired']">
                     Description is required
                 </div>
                 <div class="error-msg" *ngIf="descriptionInput.errors?.['isInvalid']">
-                    Descripiton must be between 20 and 200 characters
+                    Description must be between 20 and 200 characters
                 </div>
             </div>
-            }
+        </div>
+
+        <!-- Code Paste Field -->
+        <div class="form-group">
+            <label for="code-snippet">Code Snippet</label>
+            <textarea id="code-snippet" name="code" rows="8"
+                placeholder="Paste your code here..." ngModel
+                #codeInput="ngModel" (blur)="triggerValidation(codeInput.control)">
+            </textarea>
+
+            <div *ngIf="codeInput.touched">
+                <div class="error-msg" *ngIf="codeInput.errors?.['isRequired']">
+                    Code snippet is required
+                </div>
+            </div>
         </div>
 
         <!-- Tags -->
@@ -77,9 +85,7 @@
             <p class="form-hint">Click on tags to add them to your selection.</p>
         </div>
 
-
         <!-- Submit Button -->
-        <button 
-        type="submit" class="btn submit-btn" [disabled]="questionForm.invalid">Post Your Question</button>
+        <button type="submit" class="btn submit-btn" [disabled]="questionForm.invalid">Post Your Question</button>
     </form>
 </section>

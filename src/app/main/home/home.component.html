@@ -28,72 +28,31 @@
         <p>Based on your selected tags.</p>
     </div>
 
-    <div class="question-box">
-        <div class="question-stats">
-            <p>1 votes</p>
-            <p>0 asnwers</p>
-            <p>10 views</p>
-        </div>
-        <div class="question">
-            <a href="" class="question-title">How to optimize Angular components for performance?</a>
-            <p>I dont undestand why do black poeple steal so much</p>
-            <div class="question-tags-user">
-                <div class="question-tags tags">
-                    <a href="">js</a>
-                    <a href="">node-js</a>
-                    <a href="">typescript</a>
-                </div>
+    
 
-                <div class="question-user">
-                    <p><img src="https://media.licdn.com/dms/image/v2/D4D03AQEScqVCpPoBuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1701072109871?e=2147483647&v=beta&t=60HfWxJBR8S54x-preXGdNL-czwG_speblpzlyFpl4c" alt=""><a href="">Anton Negentsov</a> modifiled 11 minutes ago</p>
+    @for (q of questions; track $index) {
+        <div class="question-box">
+            <div class="question-stats">
+                <p class="upvotes">{{q.upvotes}} upvotes</p>
+                <p class="answers">✔ {{q.answers}} asnwers</p>
+                <p>{{q.views}} views</p>
+                <p class="downvotes">{{q.downvotes}} downvotes</p>
+            </div>
+            <div class="question">
+                <a [routerLink]="['/questions', q._id, 'details']" class="question-title">{{ q.title }}</a>
+                <p>{{q.description}}</p>
+                <div class="question-tags-user">
+                    <div class="question-tags tags">
+                        @for (tag of q.tags; track $index) {
+                            <a href="">{{tag.name}}</a>
+                        }
+                    </div>
+    
+                    <div class="question-user">
+                        <p><img src="https://media.licdn.com/dms/image/v2/D4D03AQEScqVCpPoBuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1701072109871?e=2147483647&v=beta&t=60HfWxJBR8S54x-preXGdNL-czwG_speblpzlyFpl4c" alt=""><a href="">Anton Negentsov</a> modifiled 11 minutes ago</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-stats">
-            <p>1 votes</p>
-            <p>0 asnwers</p>
-            <p>10 views</p>
-        </div>
-        <div class="question">
-            <a href="" class="question-title">How to optimize Angular components for performance?</a>
-            <p>I dont undestand why do black poeple steal so much</p>
-            <div class="question-tags-user">
-                <div class="question-tags tags">
-                    <a href="">js</a>
-                    <a href="">node-js</a>
-                    <a href="">typescript</a>
-                </div>
-
-                <div class="question-user">
-                    <p><img src="https://media.licdn.com/dms/image/v2/D4D03AQEScqVCpPoBuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1701072109871?e=2147483647&v=beta&t=60HfWxJBR8S54x-preXGdNL-czwG_speblpzlyFpl4c" alt=""><a href="">Anton Negentsov</a> modifiled 11 minutes ago</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-stats">
-            <p>1 votes</p>
-            <p>0 asnwers</p>
-            <p>10 views</p>
-        </div>
-        <div class="question">
-            <a href="" class="question-title">How to optimize Angular components for performance?</a>
-            <p>I dont undestand why do black poeple steal so much</p>
-            <div class="question-tags-user">
-                <div class="question-tags tags">
-                    <a href="">js</a>
-                    <a href="">node-js</a>
-                    <a href="">typescript</a>
-                </div>
-
-                <div class="question-user">
-                    <p><img src="https://media.licdn.com/dms/image/v2/D4D03AQEScqVCpPoBuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1701072109871?e=2147483647&v=beta&t=60HfWxJBR8S54x-preXGdNL-czwG_speblpzlyFpl4c" alt=""><a href="">Anton Negentsov</a> modifiled 11 minutes ago</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </section>

@@ -1,1 +1,57 @@
-<p>details works!</p>
+<div class="question-wrapper">
+    <!-- Question -->
+    <section class="question-container">
+        <h1 class="question-title">{{currQuestion?.title}}</h1>
+        <p class="question-description">{{currQuestion?.description}}</p>
+        <!-- Code in the Question -->
+        <pre ngNonBindable><code class="language-css">
+            {{currQuestion?.code}}
+        </code></pre>
+        <div class="tags">
+            @for (tag of currQuestion?.tags; track $index) {
+                <span class="tag">{{tag.name}}</span>
+            }
+        </div>
+        <p class="user-details">Asked by <strong>John Doe</strong> • {{ currQuestion?.createdAt | timeAgo}}</p>
+    </section>
+
+    <!-- Answer Input -->
+    <section class="answer-form">
+        <h2>Your Answer</h2>
+        <textarea placeholder="Type your answer here..."></textarea>
+
+        <!-- Separate Code Input Field -->
+        <h3>Code Answer</h3>
+        <textarea class="code-input" placeholder="Type your code answer here..." rows="8"></textarea>
+
+        <button class="submit-btn">Post Your Answer</button>
+    </section>
+
+    <!-- Comments/Answers -->
+    <section class="answers-container">
+        <h2>3 Answers</h2>
+
+        <!-- Answer 1 -->
+        <div class="answer">
+            <div class="votes-section">
+                <button class="vote-btn upvote">↑</button>
+                <span class="vote-count">5</span>
+                <button class="vote-btn downvote">↓</button>
+            </div>
+
+            <div>
+                <p>Using flexbox is a simple solution to center elements both horizontally and vertically:</p>
+                <pre ngNonBindable>
+                    <code class="language-css">
+                        
+                    </code>
+                </pre>
+                <p class="user-details">Answered by <strong>Jane Smith</strong> • 10 minutes ago</p>
+            </div>
+        </div>
+
+        <!-- Answer 2 -->
+        
+    </section>
+</div>
+

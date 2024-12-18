@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
   @ViewChild('questionForm') form: NgForm | undefined;
 
   descriptionLength = { maxCount: 200, minCount: 20 };
-  titleLength = { maxCount: 50, minCount: 10 };
+  titleLength = { maxCount: 100, minCount: 10 };
 
   allTags: Tag[] = [];  // Updated to use objects
   selectedTags: Tag[] = []; // Now holding full tag objects
