@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { InputLengthValidator } from '../../create/length-validator.directive';
 import { HighlightDirective } from '../../../shared/input-highlist.directive';
 import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../interfaces/user';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -32,17 +34,19 @@ export class LoginComponent{
       username: this.form?.value.username,
       password: this.form?.value.password
     };
-
-    this.authServices.login(data).subscribe({
-      next: (response) => {
-        console.log('Server response:', response);
-        alert('Logged in successfully!');
-      },
-      error: (err) => {
-        console.error('Error signing in:', err.error.message);
-        alert('An error occurred. Please try again.');
-      }
-    })
+  
+    this.authServices.login(data)
+      .pipe(switchMap(() => this.authServices.fetchProfile()) // Execute fetchProfile after login
+      ).subscribe({
+        next: (profile: User) => {
+          console.log('Profile fetched:', profile);
+          alert('Logged in and profile fetched successfully!');
+        },
+        error: (err) => {
+          console.error('Error:', err.error.message);
+          alert('An error occurred. Please try again.');
+        }
+      });
   }
 
 
