@@ -41,6 +41,7 @@ header {
 }
 
 .nav-links a:hover {
+    cursor: pointer;
     color: #f9a825;
 }
 

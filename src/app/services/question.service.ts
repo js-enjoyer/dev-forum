@@ -3,14 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tag } from '../interfaces/tags';
 import { Question } from '../interfaces/questions';
+import { QUESTIONS_API } from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-
-  private apiUrl = '/api/questions';
-
+  apiUrl = QUESTIONS_API;
 
   constructor(private http: HttpClient) { }
 
