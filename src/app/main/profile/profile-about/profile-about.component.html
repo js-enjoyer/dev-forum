@@ -1,31 +1,29 @@
 <div class="profile-stats-about">
-    <div class="profile-stats">
-        <div class="left-column">
-            <div class="stat-box">
-                <span>{{user?.reputation}}</span>
-                <p>reputaion</p>
-            </div>
-            <div class="stat-box">
-                <span>800</span>
-                <p>answers</p>
-            </div>
-            <div class="stat-box">
-                <span>{{user?.upvotes}}</span>
-                <p>upvotes</p>
-            </div>
+    <!-- Reputation Highlight Section -->
+    <div class="stats-container">
+        <div class="reputation-section">
+            <span class="reputation-number">{{user?.reputation}}</span>
+            <p class="reputation-label">Reputation</p>
         </div>
-        <div class="right-column">
-            <div class="stat-box">
-                <span>300</span>
-                <p>questions</p>
+    
+        <!-- Profile Stats Section -->
+        <div class="profile-stats">
+            <div class="left-column">
+                <div class="stat-box">
+                    <span>{{user?.upvotes}}</span>
+                    <p>Upvotes</p>
+                </div>
             </div>
-            <div class="stat-box">
-                <span>{{user?.downvotes}}</span>
-                <p>downvotes</p>
+            <div class="right-column">
+                <div class="stat-box">
+                    <span>{{user?.downvotes}}</span>
+                    <p>Downvotes</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Profile About Section -->
     <div class="profile-about">
         <h3>About</h3>
         <p>{{user?.description}}</p>

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { QuestionService } from '../../services/question.service';
 import { Question } from '../../interfaces/questions';
+import { TimeAgoPipe } from '../../pipes/time-age.pipe';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TimeAgoPipe],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })

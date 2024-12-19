@@ -5,9 +5,7 @@ import { TagsComponent } from './main/tags/tags.component';
 import { CreateComponent } from './main/create/create.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { ProfileAboutComponent } from './main/profile/profile-about/profile-about.component';
-import { ProfileAnswersComponent } from './main/profile/profile-answers/profile-answers.component';
 import { ProfileQuestionsComponent } from './main/profile/profile-questions/profile-questions.component';
-import { ProfileSavesComponent } from './main/profile/profile-saves/profile-saves.component';
 import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.component';
 import { LoginComponent } from './main/auth/login/login.component';
 import { RegisterComponent } from './main/auth/register/register.component';
@@ -35,8 +33,6 @@ export const routes: Routes = [
         children: [
             { path: 'about', component: ProfileAboutComponent },
             { path: 'questions', component: ProfileQuestionsComponent },
-            { path: 'answers', component: ProfileAnswersComponent },
-            { path: 'saves', component: ProfileSavesComponent },
             { path: 'edit', component: ProfileEditComponent },
         ],
     },

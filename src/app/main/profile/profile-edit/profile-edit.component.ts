@@ -57,14 +57,17 @@ export class ProfileEditComponent {
 
   onSubmit() {
     const data = this.form?.value;
-
+    
     let payload = {
       image: data.image,
       username: data.username,
-      descripiton: data.description ? this.form?.value.description : '',
+      descripiton: data.description ? data.description : '',
       oldPassword: data.oldPassword ? data.oldPassword : '',
       newPassword: data.newPassword ? data.newPassword : ''
     }
+
+    console.log(payload);
+    
     
     this.userServices.updateUser(payload).subscribe({
       next: (response) => {

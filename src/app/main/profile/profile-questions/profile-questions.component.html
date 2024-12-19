@@ -1,1 +1,22 @@
-<p>profile-questions works!</p>
+<section class="user-questions">
+    <h3>User Questions</h3>
+    <div *ngIf="userQuestions?.length; else noQuestions">
+        @for (question of userQuestions; track $index) {
+        <div class="user-question">
+            <h4>{{ question.title }}</h4>
+            <p>{{ question.description }}</p>
+            <div class="question-stats">
+                <span>{{ question.upvotes }} Upvotes</span>
+                <span>{{ question.answers }} Answers</span>
+                <span>{{ question.views }} Views</span>
+            </div>
+            <a [routerLink]="['/questions', question._id, 'details']" class="view-link">View Details</a>
+        </div>
+        }
+
+    </div>
+
+    <ng-template #noQuestions>
+        <p>This user has not posted any questions yet.</p>
+    </ng-template>
+</section>

@@ -1,4 +1,5 @@
 import { Tag } from "./tags";
+import { ContentUser } from "./user";
 
 export interface Question {
     _id: String,
@@ -6,7 +7,7 @@ export interface Question {
     description: String,
     code: String,
     tags: Tag[],
-    owner_id: String,
+    owner_id: ContentUser,
     upvotes: Number,
     answers: Number,
     downvotes: Number,

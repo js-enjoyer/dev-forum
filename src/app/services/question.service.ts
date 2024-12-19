@@ -27,6 +27,10 @@ export class QuestionService {
     return this.http.get<Question[]>(`${this.apiUrl}/recommended`);
   }
 
+  fetchUserQuestions(id: any): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.apiUrl}/user/${id}`);
+  }
+
   fetchSearchedQuestions(data: any): Observable<Question[]> {
     return this.http.post<Question[]>(`${this.apiUrl}/search`, data);
   }

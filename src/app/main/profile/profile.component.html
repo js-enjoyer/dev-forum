@@ -16,9 +16,9 @@
     <div class="profile-nav">
         <a routerLink="about">Profile</a>
         <a routerLink="questions">Questions</a>
-        <a routerLink="answers">Answers</a>
-        <a routerLink="saves">Saves</a>
-        <a routerLink="edit">Edit Profile</a>
+        @if(isOwner) {
+            <a routerLink="edit">Edit Profile</a>
+        }
     </div>
 </div>
 

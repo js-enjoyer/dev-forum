@@ -49,7 +49,10 @@
                     </div>
     
                     <div class="question-user">
-                        <p><img src="https://media.licdn.com/dms/image/v2/D4D03AQEScqVCpPoBuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1701072109871?e=2147483647&v=beta&t=60HfWxJBR8S54x-preXGdNL-czwG_speblpzlyFpl4c" alt=""><a href="">Anton Negentsov</a> modifiled 11 minutes ago</p>
+                        <p>
+                            <img src={{q.owner_id.image}}>
+                            <a [routerLink]="['/profile', q.owner_id._id, 'about']">{{q.owner_id.username}}</a>
+                            {{q.createdAt | timeAgo}}</p>
                     </div>
                 </div>
             </div>

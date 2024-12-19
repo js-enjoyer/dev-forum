@@ -3,11 +3,12 @@ import { QuestionService } from '../../services/question.service';
 import { Question } from '../../interfaces/questions';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { TimeAgoPipe } from '../../pipes/time-age.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ RouterLink ],
+  imports: [ RouterLink, TimeAgoPipe ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

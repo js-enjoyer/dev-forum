@@ -16,6 +16,7 @@ import { TimeAgoPipe } from '../../pipes/time-age.pipe';
 })
 export class ProfileComponent implements OnInit{
   user: ContentUser | null = null;
+  isOwner: boolean = false;
 
   constructor( 
     private userServices: UserService,
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit{
       mergeMap((authUser) => {
         if (authUser) {
           let isCurrentUser = paramsId === authUser._id;
+          this.isOwner = isCurrentUser;
           
           return this.userServices.fetchCurrentUser(isCurrentUser ? authUser._id : paramsId);
         } else {

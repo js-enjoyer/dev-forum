@@ -13,7 +13,7 @@
                     <img src={{user.image}}>
                 </div>
                 <div class="user-info">
-                    <a href="">{{user.username}}</a>
+                    <a [routerLink]="['/profile', user._id, 'about']">{{user.username}}</a>
                     <p class="user-country">{{user.location}}</p>
                     <p>{{user.reputation}}</p>
                 </div>
