@@ -25,6 +25,10 @@ export class HeaderComponent implements OnInit {
   get isLoggedIn(): boolean {
     return this.authServices.isLogged;
   }
+  
+  get userId(): String | undefined{
+    return this.authServices.userId;
+  }
 
   constructor(
     private authServices: AuthService, 

@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { InputLengthValidator } from '../../create/length-validator.directive'; 
+import { Router, RouterLink } from '@angular/router';
+import { InputLengthValidator } from '../../../shared/validators/length-validator.directive'; 
 import { HighlightDirective } from '../../../shared/input-highlist.directive';
-import { EmailValidatorDirective } from '../validators/email-validator.directive';
-import { DOMAINS } from '../../../app.constants';
+import { EmailValidatorDirective } from '../../../shared/validators/email-validator.directive';
+import { DOMAINS, EMAIL_LENGTH, PASSWORD_LENGTH, USERNAME_LENGTH } from '../../../app.constants';
 import { rePassValidatorDirective } from '../validators/rePass-validator.directive';
 import { AuthService } from '../../../services/auth.service';
+import { IsRequiredValidator } from '../../../shared/validators/required-validator.directive';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ import { AuthService } from '../../../services/auth.service';
     InputLengthValidator, 
     HighlightDirective,
     EmailValidatorDirective,
+    IsRequiredValidator,
     rePassValidatorDirective
   ],
   templateUrl: './register.component.html',
@@ -29,11 +31,11 @@ export class RegisterComponent {
 
   domains: string[] = DOMAINS;
 
-  usernameLength = { maxCount: 12, minCount: 5 };
-  emailLength = { maxCount: 20, minCount: 10 };
-  passwordLength = { maxCount: 20, minCount: 9 };
+  usernameLength = USERNAME_LENGTH;
+  emailLength = EMAIL_LENGTH;
+  passwordLength = PASSWORD_LENGTH;
 
-  constructor( private authServices: AuthService ) {}
+  constructor( private authServices: AuthService, private router: Router ) {}
 
   onSubmit(): void {
     const data = {
@@ -46,6 +48,7 @@ export class RegisterComponent {
       next: (response) => {
         console.log('Server response:', response);
         alert('Registered successfully!');
+        this.router.navigate(['/auth/login']);
       },
       error: (err) => {
         console.error('Error signing up:', err.error.message);

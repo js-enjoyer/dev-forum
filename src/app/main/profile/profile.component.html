@@ -1,13 +1,12 @@
 <div class="profile-wrapper">
     <div class="profile-view">
         <div class="img-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeLVt8bXI4ahYoLuiFfGVWhnjyD_1a7ZvU6w&s" alt="">
+            <img src={{user?.image}}>
         </div>
         <div class="profile-info">
-            <h2>Anton Negentsov</h2>
+            <h2>{{user?.username}}</h2>
             <div class="profile-activity">
-                <p class="member-history">Member for 2 years</p>
-                <p class="member-history">Seen 3 days ago</p>
+                <p class="member-history">Been a member from {{ user?.createdAt | timeAgo}}</p>
             </div>
         </div>
     </div>

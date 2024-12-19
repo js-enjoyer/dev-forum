@@ -8,9 +8,15 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <div class="input-and-tick">
-                    <input type="text" name="username" placeholder="Enter your Username" ngModel #usernameInput="ngModel"
-                        [appLengthValidator]="usernameLength" [app-highlight]="usernameInput.errors"
-                        (blur)="triggerValidation(usernameInput.control)">
+                    <input 
+                    type="text" 
+                    name="username" 
+                    placeholder="Enter your Username" 
+                    ngModel #usernameInput="ngModel" 
+                    appRequiredValidator
+                    [appLengthValidator]="usernameLength" 
+                    [app-highlight]="usernameInput.errors"
+                    (blur)="triggerValidation(usernameInput.control)">
 
                     @if (usernameInput.touched) {
                     <div class="green-tick" *ngIf="!usernameInput.errors">✔</div>
@@ -33,9 +39,16 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-and-tick">
-                    <input type="password" name="password" placeholder="Enter your password" ngModel
-                        #passwordInput="ngModel" [appLengthValidator]="passwordLength" [app-highlight]="passwordInput.errors"
-                        (blur)="triggerValidation(passwordInput.control)">
+                    <input 
+                    type="password" 
+                    name="password" 
+                    placeholder="Enter your password" 
+                    ngModel
+                    #passwordInput="ngModel" 
+                    appRequiredValidator
+                    [appLengthValidator]="passwordLength" 
+                    [app-highlight]="passwordInput.errors"
+                    (blur)="triggerValidation(passwordInput.control)">
 
                     @if (passwordInput.touched) {
                     <div class="green-tick" *ngIf="!passwordInput.errors">✔</div>

@@ -28,10 +28,9 @@ export const routes: Routes = [
     {path: 'users', component: UsersComponent},
     {path: 'tags', component: TagsComponent},
     {
-        path: 'profile',
+        path: 'profile/:id',
         component: ProfileComponent, // Parent ProfileComponent
         children: [
-            { path: '', redirectTo: 'about', pathMatch: 'full' }, // Default to 'about'
             { path: 'about', component: ProfileAboutComponent },
             { path: 'questions', component: ProfileQuestionsComponent },
             { path: 'answers', component: ProfileAnswersComponent },

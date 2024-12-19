@@ -24,12 +24,11 @@ export class DetailsComponent implements OnInit {
   }
 
   getCurrQuestion(): void {
-    const questionId = this.route.snapshot.params['id']  // Get the 'id' from the URL
+    const questionId = this.route.snapshot.params['id']  // Get the 'id' from the URL   
     
     if (questionId) {
       // Call the service to fetch the question by id
       this.questionService.fetchCurrQuestion(questionId).subscribe((question: Question) => {
-        console.log(question);
         
         this.currQuestion = question;  // Assign the question data to currQuestion
       });

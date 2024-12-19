@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, NgForm } from '@angular/forms';
 import { HighlightDirective } from '../../shared/input-highlist.directive';
 import { QuestionService } from '../../services/question.service';
-import { InputLengthValidator } from './length-validator.directive';
+import { InputLengthValidator } from '../../shared/validators/length-validator.directive';
 import { Tag } from '../../interfaces/tags';
 @Component({
   selector: 'app-create',

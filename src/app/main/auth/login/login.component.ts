@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormsModule, NgForm, RequiredValidator } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { InputLengthValidator } from '../../create/length-validator.directive';
+import { InputLengthValidator } from '../../../shared/validators/length-validator.directive';
 import { HighlightDirective } from '../../../shared/input-highlist.directive';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../interfaces/user';
-import { switchMap } from 'rxjs';
+import { IsRequiredValidator } from '../../../shared/validators/required-validator.directive';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,8 @@ import { switchMap } from 'rxjs';
     CommonModule,
     RouterLink,
     InputLengthValidator,
-    HighlightDirective
+    HighlightDirective,
+    IsRequiredValidator
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

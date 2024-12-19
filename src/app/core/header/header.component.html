@@ -59,7 +59,7 @@
                 <li><a routerLink="/auth/login">Log in</a></li>
                 <li><a routerLink="/auth/register">Sign up</a></li>
             } @else {
-                <li><a routerLink="/profile">Profile</a></li>
+                <li><a [routerLink]="['/profile', userId, 'about']">Profile</a></li>
                 <!-- <li><a href="#">N</a></li>
                 <li><a href="#">H</a></li> -->
                 <li><a (click)="onLogout()">Log Out</a></li>

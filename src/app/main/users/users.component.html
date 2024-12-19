@@ -6,108 +6,18 @@
 </div>
 
 <section class="users-section">
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>1900</p>
-            </div>
-        </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>2000</p>
+    @for (user of users; track $index) {
+        <div class="users-container">
+            <div class="user-div">
+                <div class="user-img-container">
+                    <img src={{user.image}}>
+                </div>
+                <div class="user-info">
+                    <a href="">{{user.username}}</a>
+                    <p class="user-country">{{user.location}}</p>
+                    <p>{{user.reputation}}</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>2000</p>
-            </div>
-        </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>600</p>
-            </div>
-        </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>100</p>
-            </div>
-        </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>1500</p>
-            </div>
-        </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>1000</p>
-            </div>
-        </div>
-    </div>
-    <div class="users-container">
-        <div class="user-div">
-            <div class="user-img-container">
-                <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"
-                    alt="">
-            </div>
-            <div class="user-info">
-                <a href="">Anton Negentsov</a>
-                <p class="user-country">UK</p>
-                <p>800</p>
-            </div>
-        </div>
-    </div>
+    }
 </section>

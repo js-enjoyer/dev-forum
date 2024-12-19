@@ -11,7 +11,8 @@
                     type="text" 
                     name="username" 
                     placeholder="Enter your Username" 
-                    ngModel #usernameInput="ngModel"   
+                    ngModel #usernameInput="ngModel"
+                    appRequiredValidator
                     [appLengthValidator]="usernameLength"
                     [app-highlight]="usernameInput.errors"
                     (blur)="triggerValidation(usernameInput.control)">
@@ -43,6 +44,7 @@
                     placeholder="Enter your email" 
                     ngModel
                     #emailInput="ngModel" 
+                    appRequiredValidator
                     [appLengthValidator]="emailLength"
                     [appEmailValidator]="domains"
                     [app-highlight]="emailInput.errors"
@@ -78,6 +80,7 @@
                     placeholder="Enter your password" 
                     ngModel
                     #passwordInput="ngModel" 
+                    appRequiredValidator
                     [appLengthValidator]="passwordLength"
                     [app-highlight]="passwordInput.errors"
                     (blur)="triggerValidation(passwordInput.control)"
@@ -109,6 +112,7 @@
                     placeholder="Enter your password" 
                     ngModel
                     #rePassInput="ngModel"
+                    appRequiredValidator
                     [appLengthValidator]="passwordLength"
                     appRePassValidator
                     [app-highlight]="rePassInput.errors"
