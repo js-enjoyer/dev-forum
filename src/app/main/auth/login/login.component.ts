@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { InputLengthValidator } from '../../create/length-validator.directive';
 import { HighlightDirective } from '../../../shared/input-highlist.directive';
 import { AuthService } from '../../../services/auth.service';
@@ -11,12 +11,12 @@ import { switchMap } from 'rxjs';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ 
-    FormsModule, 
-    CommonModule, 
-    RouterLink, 
-    InputLengthValidator, 
-    HighlightDirective 
+  imports: [
+    FormsModule,
+    CommonModule,
+    RouterLink,
+    InputLengthValidator,
+    HighlightDirective
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -27,26 +27,28 @@ export class LoginComponent{
   usernameLength = { maxCount: 12, minCount: 5 };
   passwordLength = { maxCount: 20, minCount: 9 };
 
-  constructor( private authServices: AuthService ) {}
+  get isLoggedIn(): boolean {
+    return this.authServices.isLogged;
+  }
+  constructor(private authServices: AuthService, private router: Router) {}
 
   onSubmit() {
     const data = {
       username: this.form?.value.username,
       password: this.form?.value.password
     };
-  
-    this.authServices.login(data)
-      .pipe(switchMap(() => this.authServices.fetchProfile()) // Execute fetchProfile after login
-      ).subscribe({
-        next: (profile: User) => {
-          console.log('Profile fetched:', profile);
-          alert('Logged in and profile fetched successfully!');
-        },
-        error: (err) => {
-          console.error('Error:', err.error.message);
-          alert('An error occurred. Please try again.');
-        }
-      });
+
+    this.authServices.login(data).subscribe({
+      next: (profile: User) => {
+        console.log('Profile fetched:', profile);
+        alert('Logged in and profile fetched successfully!');
+        this.router.navigate(['/'])
+      },
+      error: (err) => {
+        console.error('Error:', err.error.message);
+        alert('An error occurred. Please try again.');
+      }
+    })
   }
 
 

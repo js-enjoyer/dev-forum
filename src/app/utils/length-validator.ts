@@ -5,7 +5,6 @@ export function legnthValidator(count: { maxCount: Number, minCount: Number }): 
    
     return (control) => {
         const isRequired = control.touched && control.value == '';
-        console.log(isRequired);
         
         const isLength = control.value !== '' && (control.value.length > count.maxCount || control.value.length < count.minCount);
 

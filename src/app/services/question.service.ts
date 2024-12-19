@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Tag } from '../interfaces/tags';
 import { Question } from '../interfaces/questions';
 import { QUESTIONS_API } from '../app.constants';
@@ -11,10 +11,24 @@ import { QUESTIONS_API } from '../app.constants';
 export class QuestionService {
   apiUrl = QUESTIONS_API;
 
+  private searchedQuestions$$ = new BehaviorSubject<Question | []>([]);
+  public searchedQuestions$ = this.searchedQuestions$$.asObservable();
+
+  searchedQuestions: Question[] | [] = [];
+  userSubscription: Subscription | null = null;
+
+  get searched(): Question[] {
+    return this.searchedQuestions;
+  }
+
   constructor(private http: HttpClient) { }
 
   fetchQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.apiUrl}/recommended`);
+  }
+
+  fetchSearchedQuestions(data: any): Observable<Question[]> {
+    return this.http.post<Question[]>(`${this.apiUrl}/search`, data);
   }
 
   fetchCurrQuestion(id: String): Observable<Question> {
@@ -27,6 +41,10 @@ export class QuestionService {
 
   fetchTags(): Observable<Tag[]> {
     return this.http.get<Tag[]>(`${this.apiUrl}/tags`);
+  }
+
+  fetchSearchedTags(filter: any): Observable<Tag[]> {
+    return this.http.post<Tag[]>(`${this.apiUrl}/tags/search`, filter );
   }
 }
 

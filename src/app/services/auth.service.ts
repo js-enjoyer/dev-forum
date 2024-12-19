@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 
 import { User } from '../interfaces/user';
 import { USER_API } from '../app.constants';
@@ -8,23 +8,24 @@ import { USER_API } from '../app.constants';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy{
     apiUrl = USER_API;
 
-    user$$ = new BehaviorSubject<User | null>(null)
-    user$ = this.user$$.asObservable();
+    private user$$ = new BehaviorSubject<User | null>(null)
+    public user$ = this.user$$.asObservable();
 
     user: User | null = null;
+    userSubscription: Subscription | null = null;
 
     get isLogged(): boolean {
         return !!this.user;
     }
 
-    constructor(private http: HttpClient) { 
-        this.user$.subscribe((user) => {
-            this.user = user;
-        })
-    }
+    constructor(private http: HttpClient) {
+        this.userSubscription = this.user$.subscribe((user) => {
+          this.user = user;
+        });
+      }
 
     fetchProfile(): Observable<User> {
         return this.http.get<User>(`${this.apiUrl}/profile`)
@@ -32,7 +33,8 @@ export class AuthService {
     }
 
     login(userData: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}/login`, userData);
+        return this.http.post<any>(`${this.apiUrl}/login`, userData)
+        .pipe(tap((user) => this.user$$.next(user)));
     }
 
     register(userData: any): Observable<any> {
@@ -44,4 +46,7 @@ export class AuthService {
         .pipe(tap(() => this.user$$.next(null)));
     }
 
+    ngOnDestroy(): void {
+        this.userSubscription?.unsubscribe();
+    }
 }

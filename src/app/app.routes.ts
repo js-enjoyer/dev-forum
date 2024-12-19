@@ -12,6 +12,8 @@ import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.c
 import { LoginComponent } from './main/auth/login/login.component';
 import { RegisterComponent } from './main/auth/register/register.component';
 import { DetailsComponent } from './main/details/details.component';
+import { ErrorComponent } from './error/error.component';
+import { SearchComponent } from './main/search/search.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,7 +21,7 @@ export const routes: Routes = [
     {path: 'questions', children: [
         //{ path: '', redirectTo: 'browse', pathMatch: 'full' },
         {path: 'create', component: CreateComponent},
-        //{path: 'search', component: SearchComponent},
+        {path: 'search', component: SearchComponent},
         {path: ':id/details', component: DetailsComponent},
 
     ]},
@@ -41,5 +43,7 @@ export const routes: Routes = [
         {path: 'login', component: LoginComponent},
         {path: 'register', component: RegisterComponent},
     ]},
-    //{ path: '**', redirectTo: '/home', pathMatch: 'full' }
+    {path: '404', component: ErrorComponent},
+
+    { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];

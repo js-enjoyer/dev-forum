@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 import { Question } from '../../interfaces/questions';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,11 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent implements OnInit{
   questions: Question[] | [] = [];
 
-  constructor(private questionServices: QuestionService) {}
+  constructor(private questionServices: QuestionService, private authSerives: AuthService) {}
 
   ngOnInit(): void {
     this.getQuestions();
+    
   }
 
   getQuestions():void {

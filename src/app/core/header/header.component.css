@@ -93,7 +93,7 @@ header {
 /* Dropdown Menu Styling */
 .search-bar .dropdown-menu {
     position: absolute;
-    top: 100%; 
+    top: 100%;
     left: 0;
     width: 600px;
     background-color: #444;
@@ -101,42 +101,80 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 10;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.search-bar .tags-list input {
+/* Left Side: Scrollable Tags List */
+.tags-list {
+    width: 50%;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height: 200px; /* Scrollable */
+}
+
+.tags-list input {
     width: 100%;
     padding: 0.5rem;
-    background-color: #333;
+    margin-bottom: 10px;
+    background-color: #222;
     color: #fff;
+    border: 1px solid #666;
     border-radius: 4px;
+}
+
+.tags-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tags-list ul li {
+    padding: 5px;
+    color: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.tags-list ul li:hover {
+    background-color: #555;
+    color: #f9a825;
+}
+
+.tags-list ul li.selected {
+    background-color: #3c95fb;
+    color: #fff;
+}
+
+/* Right Side: Selected Tags */
+.selected-tags {
+    width: 45%;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.selected-tags h4 {
+    color: #f9a825;
+    font-size: 1.1rem;
     margin-bottom: 10px;
 }
 
-.search-bar .tags-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.search-bar .tags-list ul li {
-    padding: 5px 0;
-    color: #ccc;
-}
-
-.search-bar .selected-tags {
-    margin-top: 15px;
-}
-
-.search-bar .selected-tags h4 {
-    color: #f9a825;
-    font-size: 1.1rem;
-}
-
-.search-bar .selected-tags .tag {
+.selected-tags .tag {
     display: inline-block;
     background-color: #3c95fb;
     color: #fff;
     padding: 5px 10px;
-    margin-right: 5px;
+    margin: 5px 0;
     border-radius: 3px;
     font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.selected-tags .tag:hover {
+    background-color: #ff3b3b;
+    color: #fff;
 }
