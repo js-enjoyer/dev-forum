@@ -61,7 +61,7 @@ export class ProfileEditComponent {
     let payload = {
       image: data.image,
       username: data.username,
-      descripiton: data.description ? data.description : '',
+      description: data.description ? data.description : '',
       oldPassword: data.oldPassword ? data.oldPassword : '',
       newPassword: data.newPassword ? data.newPassword : ''
     }
