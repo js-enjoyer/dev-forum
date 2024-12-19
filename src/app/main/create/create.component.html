@@ -12,9 +12,16 @@
             <label for="question-title">Title</label>
 
             <div class="input-and-tick">
-                <input type="text" name="title" placeholder="e.g., How to optimize Angular performance?" ngModel
-                    #titleInput="ngModel" [appLengthValidator]="titleLength" [app-highlight]="titleInput.errors"
-                    (blur)="triggerValidation(titleInput.control)">
+                <input 
+                type="text" 
+                name="title" 
+                placeholder="e.g., How to optimize Angular performance?" 
+                ngModel
+                #titleInput="ngModel" 
+                appRequiredValidator
+                [appLengthValidator]="titleLength" 
+                [app-highlight]="titleInput.errors"
+                (blur)="triggerValidation(titleInput.control)">
 
                 <div class="green-tick" *ngIf="!titleInput.errors && titleInput.touched">✔</div>
             </div>
@@ -23,7 +30,7 @@
                 <div class="error-msg" *ngIf="titleInput.errors?.['isRequired']">
                     Title is required
                 </div>
-                <div class="error-msg" *ngIf="titleInput.errors?.['isInvalid']">
+                <div class="error-msg" *ngIf="titleInput.errors?.['isLength']">
                     Title must be between {{titleLength.minCount}} and {{titleLength.maxCount}} characters
                 </div>
             </div>
@@ -32,17 +39,23 @@
         <!-- Question Details -->
         <div class="form-group">
             <label for="question-details">Details</label>
-            <textarea id="question-details" name="description" rows="8"
-                placeholder="Explain your question in detail. Include code snippets, errors, or references." ngModel
-                #descriptionInput="ngModel" [appLengthValidator]="descriptionLength"
-                [app-highlight]="descriptionInput.errors" (blur)="triggerValidation(descriptionInput.control)">
+            <textarea 
+            name="description" 
+            rows="8"
+            placeholder="Explain your question in detail. Include code snippets, errors, or references." 
+            ngModel
+            #descriptionInput="ngModel" 
+            appRequiredValidator
+            [appLengthValidator]="descriptionLength"
+            [app-highlight]="descriptionInput.errors" 
+            (blur)="triggerValidation(descriptionInput.control)">
             </textarea>
 
             <div *ngIf="descriptionInput.touched">
                 <div class="error-msg" *ngIf="descriptionInput.errors?.['isRequired']">
                     Description is required
                 </div>
-                <div class="error-msg" *ngIf="descriptionInput.errors?.['isInvalid']">
+                <div class="error-msg" *ngIf="descriptionInput.errors?.['isLength']">
                     Description must be between 20 and 200 characters
                 </div>
             </div>
@@ -53,14 +66,8 @@
             <label for="code-snippet">Code Snippet</label>
             <textarea id="code-snippet" name="code" rows="8"
                 placeholder="Paste your code here..." ngModel
-                #codeInput="ngModel" (blur)="triggerValidation(codeInput.control)">
+                #codeInput="ngModel">
             </textarea>
-
-            <div *ngIf="codeInput.touched">
-                <div class="error-msg" *ngIf="codeInput.errors?.['isRequired']">
-                    Code snippet is required
-                </div>
-            </div>
         </div>
 
         <!-- Tags -->

@@ -23,13 +23,18 @@
 }
 
 .tags .tag {
-    display: inline-block;
-    background-color: #444;  /* Dark tag background */
-    color: #9bcbff;  /* Light tag text */
-    padding: 8px 15px;
-    margin-right: 10px;
-    border-radius: 4px;
-    font-size: 0.9em;
+    padding: 12px 12px;
+    margin-right: 4px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #252525;
+    border: 1px solid #4c4c4c;
+    font-size: 15px;
+}
+
+.tags .tag:hover{
+    background-color: #676767bd;
 }
 
 .user-details {
@@ -99,7 +104,31 @@
 .answer .votes-section {
     display: flex;
     flex-direction: column;
-    margin-right: 15px;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.votes-section .vote-btn {
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.votes-section .upvote {
+    background-color: rgb(106, 208, 75);
+    border-color: #3889c2;
+    margin-bottom: 5px;
+}
+
+.votes-section .downvote {
+    background-color: rgb(222, 74, 74);
+    border-color: #0077cc;
+}
+
+.votes-section .vote-count {
+    color: #f8f8f2;
+    font-weight: 600;
+    font-size: 25px;
 }
 
 .answer p {
@@ -114,8 +143,10 @@
 }
 
 /* Code Block Styling */
+
+/* Code Block Styling */
 pre {
-    background-color: #2b2c25;  /* Dark background for code blocks */
+    background-color: #1e1e1e;  /* Dark background for code blocks */
     color: #f8f8f2;  /* Light color for code text */
     padding: 15px;
     border-radius: 5px;
@@ -128,4 +159,14 @@ code {
     font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
     line-height: 1.5;
+}
+
+.error-msg-container {
+    margin-bottom: 7px;
+}
+
+.error-msg {
+    color: #f04e4e;;
+    font-weight: 600;
+    margin-top: 3px 0;
 }

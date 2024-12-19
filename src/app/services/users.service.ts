@@ -11,7 +11,7 @@ import { USER_API } from '../app.constants';
 export class UserService {
     apiUrl = USER_API;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     fetchUsers(): Observable<ContentUser[]> {
         return this.http.get<ContentUser[]>(`${this.apiUrl}/users`);
@@ -23,5 +23,13 @@ export class UserService {
 
     updateUser(payload: any): Observable<ContentUser> {
         return this.http.post<ContentUser>(`${this.apiUrl}/edit`, payload);
+    }
+
+    upvote(id: any): Observable<ContentUser> {
+        return this.http.get<ContentUser>(`${this.apiUrl}/${id}/upvote`);
+    }
+
+    downvote(id: any): Observable<ContentUser> {
+        return this.http.get<ContentUser>(`${this.apiUrl}/${id}/downvote`);
     }
 }

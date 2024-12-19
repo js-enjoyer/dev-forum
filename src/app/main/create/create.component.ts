@@ -5,23 +5,26 @@ import { HighlightDirective } from '../../shared/input-highlist.directive';
 import { QuestionService } from '../../services/question.service';
 import { InputLengthValidator } from '../../shared/validators/length-validator.directive';
 import { Tag } from '../../interfaces/tags';
+import { AuthService } from '../../services/auth.service';
+import { IsRequiredValidator } from '../../shared/validators/required-validator.directive';
+import { DESCRIPTION_LENGTH, TITLE_LENGTH } from '../../app.constants';
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [ FormsModule, CommonModule,  HighlightDirective, InputLengthValidator],
+  imports: [ FormsModule, CommonModule,  HighlightDirective, InputLengthValidator, IsRequiredValidator],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent implements OnInit {
   @ViewChild('questionForm') form: NgForm | undefined;
 
-  descriptionLength = { maxCount: 200, minCount: 20 };
-  titleLength = { maxCount: 100, minCount: 10 };
+  descriptionLength = DESCRIPTION_LENGTH;
+  titleLength = TITLE_LENGTH;
 
   allTags: Tag[] = [];  // Updated to use objects
   selectedTags: Tag[] = []; // Now holding full tag objects
 
-  constructor(private questionServices: QuestionService) {}
+  constructor(private questionServices: QuestionService, private authServices: AuthService) {}
 
   ngOnInit(): void {
     // Fetch all tags from the server when component initializes
@@ -41,12 +44,20 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit() {
+    if(!this.selectedTags.length) {
+      return alert('You must select at least 1 tag')
+    }
     const data = {
       title: this.form?.value.title,
       description: this.form?.value.description,
-      tags: this.selectedTags.map(tag => tag._id), // Send only tag _id to the server
-      owner_id: '60f71b6f9f1b2c23d4e7d123'
+      tags: this.selectedTags.map(tag => tag._id),
+      code: this.form?.value.code,
+      owner_id: this.authServices.userId
     };
+    
+
+    console.log(data);
+    
 
     this.questionServices.createQuestion(data).subscribe({
       next: (response) => {
